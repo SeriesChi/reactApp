@@ -38,5 +38,28 @@
 }
 
 .display {
-  padding: 10,
+  padding: 10;
+}
+
+.alignLeft {
+  text-align: left;
+}
+
+.description-block {
+  background-color: cadetblue;
+  color: white;
+  width: 30%;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px;
+  min-height: 200px;
+  max-height: 200px;
+}
+
+.text-line-6 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
