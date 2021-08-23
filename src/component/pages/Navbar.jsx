@@ -50,6 +50,18 @@ export default function Navbar() {
                     >
                         About Us
                     </div>
+                    <div 
+                        className = {`nav-item ${active === "/signIn" ? "activeColor" : "deactiveColor"}`}
+                        onClick={()=> handleClick("/signIn")}
+                    >
+                        Sign In
+                    </div>
+                    <div 
+                        className = {`nav-item ${active === "/signUp" ? "activeColor" : "deactiveColor"}`}
+                        onClick={()=> handleClick("/signUp")}
+                    >
+                        Sign Up
+                    </div>
                 </div>
             </div>
         </>

@@ -15,10 +15,9 @@ export function getData(link, params, onSuccess, onFail) {
 }
 
 export function postData(link, data, onSuccess, onFail) {
+  console.log(data);
   axios
-    .post(mainHost + link, data, {
-      headers: { "content-type": "applicaiton/json" },
-    })
+    .post(mainHost + link, data)
     .then((res) => {
       onSuccess(res);
     })
