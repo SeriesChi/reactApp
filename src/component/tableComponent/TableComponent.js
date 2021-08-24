@@ -41,10 +41,12 @@ export default function TableComponent(props) {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleChangePage = (event, newPage) => {
+    console.log(newPage, "newpage");
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
+    console.log(+event.target.value, "handle change row");
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
@@ -68,13 +70,15 @@ export default function TableComponent(props) {
                 </StyledTableCell>
               </StyledTableRow>
             ) : (
-              props.data.map((row) => (
-                <StyledTableRow key={row._id}>
-                  {props.column.map((itemField) => (
-                    <StyledTableCell>{row[itemField.field]}</StyledTableCell>
-                  ))}
-                </StyledTableRow>
-              ))
+              props.data
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => (
+                  <StyledTableRow key={row._id}>
+                    {props.column.map((itemField) => (
+                      <StyledTableCell>{row[itemField.field]}</StyledTableCell>
+                    ))}
+                  </StyledTableRow>
+                ))
             )}
           </TableBody>
         </Table>

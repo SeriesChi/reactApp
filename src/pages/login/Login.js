@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { postData } from "../../api/CommonApi";
 import { readLoginUser } from "../../api/Link";
+import FormInput from "../../component/FormInput";
+import FormButton from "../../component/FormButton";
 
 export default function Login() {
   const initialState = { userName: null, password: null };
   const [loginData, setLoginData] = useState(initialState);
+  const [msg, setMsg] = useState();
 
   // const onChangeText = (prop) => (event) => {
   //   setLoginData({ ...loginData, [prop]: event.target.value });
@@ -20,52 +23,50 @@ export default function Login() {
     console.log("inside login");
     console.log(loginData, "login data");
 
-    // let data = {
-    //   userName: loginData.userName,
-    //   password: loginData.password,
-    // };
-
-    // // let data = new FormData();
-    // // data.append("userName", loginData.userName);
-
-    // postData(
-    //   readLoginUser,
-    //   data,
-    //   (res) => {
-    //     console.log(res.data, "res");
-    //   },
-    //   (err) => {
-    //     console.log(JSON.stringify(err, null, 2));
-    //   }
-    // );
+    postData(
+      readLoginUser,
+      loginData,
+      (res) => {
+        console.log(res.data.msg, "res");
+        console.log(res, "data");
+        console.log(res.data.token, "token");
+        setMsg(res.data.msg);
+        localStorage.setItem("token", res.data.token);
+      },
+      (err) => {
+        console.log(JSON.stringify(err, null, 2));
+      }
+    );
   };
   return (
     <>
       <h3>Login</h3>
+      <div>{msg}</div>
       <form>
-        <div>
-          <label>Email: </label>
-          <input
-            type="text"
+        <div className="width-100">
+          <FormInput
+            label="User Name"
             name="userName"
+            className="width-50"
             value={loginData.userName}
-            // onChange={onChangeText("userName")}
-            onChange={(event) => onChangeText(event)}
-            placeholder="Enter Email"
+            onChangeText={onChangeText}
           />
         </div>
-        <div>
-          <label>Password: </label>
-          <input
-            type="password"
+        <div className="width-100">
+          <FormInput
+            label="Password"
             name="password"
+            type="password"
+            className="width-50"
             value={loginData.password}
-            // onChange={onChangeText("password")}
-            onChange={(event) => onChangeText(event)}
-            placeholder="Enter Password"
+            onChangeText={onChangeText}
           />
         </div>
-        <button onClick={handleLogin}>Login</button>
+        <FormButton
+          title="Sign In"
+          color="primary"
+          handleSubmit={handleLogin}
+        />
       </form>
     </>
   );

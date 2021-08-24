@@ -17,6 +17,7 @@ export default function SignUp() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [msg, setMsg] = useState();
 
   const onChangeText = (event) => {
     setSignUpData({ ...signUpData, [event.target.name]: event.target.value });
@@ -34,8 +35,9 @@ export default function SignUp() {
       createSignUp,
       signUpData,
       (res) => {
-        console.log("User Successfully Created");
-        history.push("/");
+        console.log(res.data.msg);
+        setMsg(res.data.msg);
+        // history.push("/");
       },
       (err) => {
         console.log(JSON.stringify(err, null, 2));
@@ -45,6 +47,7 @@ export default function SignUp() {
   return (
     <>
       <h3>SignUp</h3>
+      <div>{msg}</div>
       <form className="formRow">
         <div className="width-100">
           <FormInput

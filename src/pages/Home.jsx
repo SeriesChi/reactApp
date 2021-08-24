@@ -24,10 +24,6 @@ function Home() {
             field: "address",
             header: "Address"
         },
-        {
-            field: "password",
-            header: "Password"
-        },
     ];
 
     useEffect(() => {
@@ -50,6 +46,9 @@ function Home() {
             <Header 
                 title="Home"
             />
+            <div>
+            {localStorage.getItem("token")}
+            </div>
             {user ? 
                 <TableComponent
                     data={user}
