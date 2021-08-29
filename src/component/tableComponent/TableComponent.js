@@ -69,7 +69,7 @@ export default function TableComponent(props) {
                   No Data
                 </StyledTableCell>
               </StyledTableRow>
-            ) : (
+            ) : (props.data &&
               props.data
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (

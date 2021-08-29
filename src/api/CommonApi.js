@@ -1,10 +1,13 @@
 import axios from "axios";
 import { mainHost } from "./Link";
 
-export function getData(link, params, onSuccess, onFail) {
+export function getData(link, params, auth, onSuccess, onFail) {
   axios
     .get(mainHost + link, {
-      headers: { "content-type": "applicaiton/json" },
+      headers: { 
+        "content-type": "applicaiton/json",
+        "authorization": auth,
+    },
     })
     .then((res) => {
       onSuccess(res);

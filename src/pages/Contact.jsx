@@ -10,6 +10,7 @@ function Contact() {
         getData(
             readDashboard,
             null,
+            null,
             (res) => {
                 console.log(res.data, "res");
                 setDash(res.data);

@@ -18,8 +18,8 @@ export default function Login() {
     setLoginData({ ...loginData, [event.target.name]: event.target.value });
   };
 
-  const handleLogin = (event) => {
-    event.preventDefault();
+  const handleLogin = () => {
+    // event.preventDefault();
     console.log("inside login");
     console.log(loginData, "login data");
 
@@ -41,7 +41,7 @@ export default function Login() {
   return (
     <>
       <h3>Login</h3>
-      <div>{msg}</div>
+      {/* <div>{msg}</div> */}
       <form>
         <div className="width-100">
           <FormInput
