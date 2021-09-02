@@ -37,3 +37,11 @@
   background-color: rgb(47, 79, 79);
   color: "white";
 }
+
+.show-item {
+  display: inline;
+}
+
+.hide-item {
+  display: none;
+}

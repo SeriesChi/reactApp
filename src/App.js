@@ -2,7 +2,7 @@
 import "./App.css";
 import Header from "./component/Header";
 import Navbar from "./component/pages/Navbar";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import AboutUs from "./pages/AboutUs";
@@ -19,9 +19,9 @@ function App() {
       {/* <Login /> */}
       {/* <SignUp /> */}
       {/* <NotiStack /> */}
-      <Router>
+      <BrowserRouter>
         
-      <Navbar />
+      <Navbar getToken={getToken} />
         {console.log(getToken, "__")}
         {getToken? (
           <Switch>
@@ -34,7 +34,7 @@ function App() {
           <Login />
           )}
           <Route exact path="/signUp" component={SignUp} />
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }

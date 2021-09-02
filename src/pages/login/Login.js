@@ -3,11 +3,13 @@ import { postData } from "../../api/CommonApi";
 import { readLoginUser } from "../../api/Link";
 import FormInput from "../../component/FormInput";
 import FormButton from "../../component/FormButton";
+import { useHistory } from 'react-router-dom';
 
 export default function Login() {
   const initialState = { userName: null, password: null };
   const [loginData, setLoginData] = useState(initialState);
   const [msg, setMsg] = useState();
+  const history = useHistory()
 
   // const onChangeText = (prop) => (event) => {
   //   setLoginData({ ...loginData, [prop]: event.target.value });
@@ -32,6 +34,9 @@ export default function Login() {
         console.log(res.data.token, "token");
         setMsg(res.data.msg);
         localStorage.setItem("token", res.data.token);
+        setLoginData(initialState);
+        window.location.reload("/");
+        // history.push("/"); 
       },
       (err) => {
         console.log(JSON.stringify(err, null, 2));
