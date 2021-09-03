@@ -9,6 +9,7 @@ import AboutUs from "./pages/AboutUs";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
 import NotiStack from "./component/NotiStact";
+import ProtectedRoute from "./component/ProtectedRoute";
 
 function App() {
   const getToken = localStorage.getItem("token");
@@ -16,24 +17,36 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Login /> */}
-      {/* <SignUp /> */}
-      {/* <NotiStack /> */}
       <BrowserRouter>
         
-      <Navbar getToken={getToken} />
+      <Navbar />
+      <Switch>
+
+        <Route exact path="/signIn" component={Login} />
+        <Route exact path="/signUp" component={SignUp} />
         {console.log(getToken, "__")}
-        {getToken? (
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/contact" component={Contact} />
-            <Route exact path="/aboutUs" component={AboutUs} />
-            <Route exact path="/signIn" component={Login} />
-          </Switch>
-        ) : (
-          <Login />
-          )}
-          <Route exact path="/signUp" component={SignUp} />
+        <ProtectedRoute 
+          path="/home"
+          component={Home}
+          redirectionPage="/signIn"
+        />
+        <ProtectedRoute 
+          path="/contact"
+          component={Contact}
+          redirectionPage="/signIn"
+        />
+        <ProtectedRoute 
+          path="/aboutUs"
+          component={AboutUs}
+          redirectionPage="/signIn"
+        />
+        <ProtectedRoute 
+          path="/signIn"
+          component={Login}
+          redirectionPage="/signIn"
+        />
+      </Switch>
+          
       </BrowserRouter>
     </div>
   );
